@@ -1,0 +1,19 @@
+y = ["Good Morning!", "Hello", "Konnichiwa", "Anyoung"]
+
+def messages():
+#Each "****" is your own information that you have to put in. 
+    cell = "****"
+    tnum = "****"
+    account = "****"
+    token = "****"
+    client = Client(account, token)
+    x = y[random.randint(0, len(y)-1)]
+    quote = client.messages.create(to = cell,
+                                   from_ = tnum,
+                                   body = x)
+schedule.every().day.at("13:42").do(messages)
+#^^ this is to schedule the messages at a certain time. Make sure you use military time. 
+
+while True:
+    schedule.run_pending()
+    time.sleep(2)
